@@ -1,29 +1,26 @@
 #Bootloader Makefile
-#Defino las herramientas a utilizar
-#Se define los nombres del ensamblador, el emulador y el depurador
-# Estas variables se colocan al inicio para facilitar su modificacion a futuro. Por ejemplo, si se
-#desea utilizar un emulador diferente, solo se cambia la variable QEMU
 
+#Definimos depurador (gdb) , emulador (qemu) y lenguaje de ensamblador (nasm)
 NASM = nasm
 QEMU = qemu-system-x86_64
 DEBUGGER = gdb
 
 
-#Defino los archivos de origen y los de destino
+#Archivo fuente y archivo de destino del bootloader
 
 BOOT_SRC = bootloader.asm
 BOOT_BIN = $(BUILD_DIR)/bootloader.bin
 BOOT_IMG = $(BUILD_DIR)/boot.img
 
-#Defino el directorio de compilacion
+#directorio de compilacion
 BUILD_DIR = ../build
 
-#punto  predeterminado
+#objetivo predeterminado
 
 .PHONY: all
 all: $(BOOT_IMG)
 
-#Creo la compilacion del bootloader
+#Compilar el bootloader
 $(BOOT_BIN): $(BOOT_SRC)
 	@echo "--> Creando bootloader.."
 	@mkdir -p $(BUILD_DIR)
